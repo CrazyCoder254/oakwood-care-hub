@@ -1,0 +1,13 @@
+import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
+
+export const Route = createFileRoute("/_public")({
+  component: () => (
+    <div className="min-h-screen flex flex-col bg-cream">
+      <SiteHeader />
+      <main className="flex-1"><Outlet /></main>
+      <SiteFooter />
+    </div>
+  ),
+});
