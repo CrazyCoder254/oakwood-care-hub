@@ -9,50 +9,339 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as PublicRouteImport } from './routes/_public'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as PublicTeamRouteImport } from './routes/_public/team'
+import { Route as PublicServicesRouteImport } from './routes/_public/services'
+import { Route as PublicMaternityRouteImport } from './routes/_public/maternity'
+import { Route as PublicInsuranceRouteImport } from './routes/_public/insurance'
+import { Route as PublicCoursesRouteImport } from './routes/_public/courses'
+import { Route as PublicContactRouteImport } from './routes/_public/contact'
+import { Route as PublicAboutRouteImport } from './routes/_public/about'
+import { Route as AuthenticatedPortalPatientRouteImport } from './routes/_authenticated/portal/patient'
+import { Route as AuthenticatedPortalDoctorRouteImport } from './routes/_authenticated/portal/doctor'
+import { Route as AuthenticatedPortalAdminRouteImport } from './routes/_authenticated/portal/admin'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PublicRoute = PublicRouteImport.update({
+  id: '/_public',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicIndexRoute = PublicIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicTeamRoute = PublicTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicServicesRoute = PublicServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicMaternityRoute = PublicMaternityRouteImport.update({
+  id: '/maternity',
+  path: '/maternity',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicInsuranceRoute = PublicInsuranceRouteImport.update({
+  id: '/insurance',
+  path: '/insurance',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicCoursesRoute = PublicCoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicContactRoute = PublicContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicAboutRoute = PublicAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => PublicRoute,
+} as any)
+const AuthenticatedPortalPatientRoute =
+  AuthenticatedPortalPatientRouteImport.update({
+    id: '/portal/patient',
+    path: '/portal/patient',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedPortalDoctorRoute =
+  AuthenticatedPortalDoctorRouteImport.update({
+    id: '/portal/doctor',
+    path: '/portal/doctor',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedPortalAdminRoute =
+  AuthenticatedPortalAdminRouteImport.update({
+    id: '/portal/admin',
+    path: '/portal/admin',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof PublicIndexRoute
+  '/auth': typeof AuthRoute
+  '/about': typeof PublicAboutRoute
+  '/contact': typeof PublicContactRoute
+  '/courses': typeof PublicCoursesRoute
+  '/insurance': typeof PublicInsuranceRoute
+  '/maternity': typeof PublicMaternityRoute
+  '/services': typeof PublicServicesRoute
+  '/team': typeof PublicTeamRoute
+  '/portal/admin': typeof AuthenticatedPortalAdminRoute
+  '/portal/doctor': typeof AuthenticatedPortalDoctorRoute
+  '/portal/patient': typeof AuthenticatedPortalPatientRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/': typeof PublicIndexRoute
+  '/auth': typeof AuthRoute
+  '/about': typeof PublicAboutRoute
+  '/contact': typeof PublicContactRoute
+  '/courses': typeof PublicCoursesRoute
+  '/insurance': typeof PublicInsuranceRoute
+  '/maternity': typeof PublicMaternityRoute
+  '/services': typeof PublicServicesRoute
+  '/team': typeof PublicTeamRoute
+  '/portal/admin': typeof AuthenticatedPortalAdminRoute
+  '/portal/doctor': typeof AuthenticatedPortalDoctorRoute
+  '/portal/patient': typeof AuthenticatedPortalPatientRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/_public': typeof PublicRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_public/about': typeof PublicAboutRoute
+  '/_public/contact': typeof PublicContactRoute
+  '/_public/courses': typeof PublicCoursesRoute
+  '/_public/insurance': typeof PublicInsuranceRoute
+  '/_public/maternity': typeof PublicMaternityRoute
+  '/_public/services': typeof PublicServicesRoute
+  '/_public/team': typeof PublicTeamRoute
+  '/_public/': typeof PublicIndexRoute
+  '/_authenticated/portal/admin': typeof AuthenticatedPortalAdminRoute
+  '/_authenticated/portal/doctor': typeof AuthenticatedPortalDoctorRoute
+  '/_authenticated/portal/patient': typeof AuthenticatedPortalPatientRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/about'
+    | '/contact'
+    | '/courses'
+    | '/insurance'
+    | '/maternity'
+    | '/services'
+    | '/team'
+    | '/portal/admin'
+    | '/portal/doctor'
+    | '/portal/patient'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/about'
+    | '/contact'
+    | '/courses'
+    | '/insurance'
+    | '/maternity'
+    | '/services'
+    | '/team'
+    | '/portal/admin'
+    | '/portal/doctor'
+    | '/portal/patient'
+  id:
+    | '__root__'
+    | '/_authenticated'
+    | '/_public'
+    | '/auth'
+    | '/_public/about'
+    | '/_public/contact'
+    | '/_public/courses'
+    | '/_public/insurance'
+    | '/_public/maternity'
+    | '/_public/services'
+    | '/_public/team'
+    | '/_public/'
+    | '/_authenticated/portal/admin'
+    | '/_authenticated/portal/doctor'
+    | '/_authenticated/portal/patient'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  PublicRoute: typeof PublicRouteWithChildren
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public': {
+      id: '/_public'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof PublicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/': {
+      id: '/_public/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/team': {
+      id: '/_public/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof PublicTeamRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/services': {
+      id: '/_public/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof PublicServicesRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/maternity': {
+      id: '/_public/maternity'
+      path: '/maternity'
+      fullPath: '/maternity'
+      preLoaderRoute: typeof PublicMaternityRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/insurance': {
+      id: '/_public/insurance'
+      path: '/insurance'
+      fullPath: '/insurance'
+      preLoaderRoute: typeof PublicInsuranceRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/courses': {
+      id: '/_public/courses'
+      path: '/courses'
+      fullPath: '/courses'
+      preLoaderRoute: typeof PublicCoursesRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/contact': {
+      id: '/_public/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof PublicContactRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/about': {
+      id: '/_public/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof PublicAboutRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_authenticated/portal/patient': {
+      id: '/_authenticated/portal/patient'
+      path: '/portal/patient'
+      fullPath: '/portal/patient'
+      preLoaderRoute: typeof AuthenticatedPortalPatientRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/portal/doctor': {
+      id: '/_authenticated/portal/doctor'
+      path: '/portal/doctor'
+      fullPath: '/portal/doctor'
+      preLoaderRoute: typeof AuthenticatedPortalDoctorRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/portal/admin': {
+      id: '/_authenticated/portal/admin'
+      path: '/portal/admin'
+      fullPath: '/portal/admin'
+      preLoaderRoute: typeof AuthenticatedPortalAdminRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
   }
 }
 
+interface AuthenticatedRouteChildren {
+  AuthenticatedPortalAdminRoute: typeof AuthenticatedPortalAdminRoute
+  AuthenticatedPortalDoctorRoute: typeof AuthenticatedPortalDoctorRoute
+  AuthenticatedPortalPatientRoute: typeof AuthenticatedPortalPatientRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedPortalAdminRoute: AuthenticatedPortalAdminRoute,
+  AuthenticatedPortalDoctorRoute: AuthenticatedPortalDoctorRoute,
+  AuthenticatedPortalPatientRoute: AuthenticatedPortalPatientRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
+interface PublicRouteChildren {
+  PublicAboutRoute: typeof PublicAboutRoute
+  PublicContactRoute: typeof PublicContactRoute
+  PublicCoursesRoute: typeof PublicCoursesRoute
+  PublicInsuranceRoute: typeof PublicInsuranceRoute
+  PublicMaternityRoute: typeof PublicMaternityRoute
+  PublicServicesRoute: typeof PublicServicesRoute
+  PublicTeamRoute: typeof PublicTeamRoute
+  PublicIndexRoute: typeof PublicIndexRoute
+}
+
+const PublicRouteChildren: PublicRouteChildren = {
+  PublicAboutRoute: PublicAboutRoute,
+  PublicContactRoute: PublicContactRoute,
+  PublicCoursesRoute: PublicCoursesRoute,
+  PublicInsuranceRoute: PublicInsuranceRoute,
+  PublicMaternityRoute: PublicMaternityRoute,
+  PublicServicesRoute: PublicServicesRoute,
+  PublicTeamRoute: PublicTeamRoute,
+  PublicIndexRoute: PublicIndexRoute,
+}
+
+const PublicRouteWithChildren =
+  PublicRoute._addFileChildren(PublicRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  PublicRoute: PublicRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
