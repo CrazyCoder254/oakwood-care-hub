@@ -45,7 +45,7 @@ export function SiteFooter() {
       <div className="border-t border-primary-foreground/10">
         <div className="container mx-auto px-4 py-5 flex flex-wrap justify-between gap-2 text-xs text-primary-foreground/60">
           <span>© {new Date().getFullYear()} Oakwood Hospital Ltd. All rights reserved.</span>
-          <span>Designed with care · Built on Lovable</span>
+          <span>Designed with care for the Oakwood community</span>
         </div>
       </div>
     </footer>
