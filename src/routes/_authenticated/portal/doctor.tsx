@@ -26,24 +26,8 @@ function DoctorPortal() {
     enabled: !!user,
   });
 
-  const { data: appointments, refetch } = useQuery({
-    queryKey: ["doc-appointments", user?.id, filter, role],
-    queryFn: async () => {
-      let q = supabase.from("appointments").select("*, doctors(name, specialty), profiles!appointments_user_id_fkey(full_name, phone)").order("appointment_date").order("appointment_time");
-      // Admin sees all; doctor sees only their assigned + unassigned-but-matching specialty? Keep simple: only their own.
-      if (role === "doctor" && doctorRecord?.id) q = q.eq("doctor_id", doctorRecord.id);
-      if (filter === "today") q = q.eq("appointment_date", today);
-      else if (filter === "upcoming") q = q.gte("appointment_date", today);
-      const { data, error } = await q;
-      if (error) console.error(error);
-      return data ?? [];
-    },
-    enabled: !!user && (role === "admin" || !!doctorRecord),
-  });
-
-  // Fallback fetch without profiles join (no FK declared) — re-run plain if join failed
-  const { data: plainAppointments } = useQuery({
-    queryKey: ["doc-appointments-plain", user?.id, filter, role, doctorRecord?.id],
+  const { data: rows = [], refetch } = useQuery({
+    queryKey: ["doc-appointments", user?.id, filter, role, doctorRecord?.id],
     queryFn: async () => {
       let q = supabase.from("appointments").select("*, doctors(name, specialty)").order("appointment_date").order("appointment_time");
       if (role === "doctor" && doctorRecord?.id) q = q.eq("doctor_id", doctorRecord.id);
@@ -53,8 +37,6 @@ function DoctorPortal() {
     },
     enabled: !!user && (role === "admin" || !!doctorRecord),
   });
-
-  const rows = useMemo(() => (appointments && appointments.length ? appointments : plainAppointments) ?? [], [appointments, plainAppointments]);
 
   const updateStatus = async (id: string, status: string) => {
     const { error } = await supabase.from("appointments").update({ status }).eq("id", id);
