@@ -32,7 +32,7 @@ export function SiteHeader() {
       </div>
       <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 group">
-          <span className="grid place-items-center w-10 h-10 rounded-lg gradient-purple text-gold font-display font-bold text-lg">O</span>
+          <img src="/favicon.png" alt="Oakwood Hospital logo" width={40} height={40} className="w-10 h-10 object-contain" />
           <span className="flex flex-col leading-none">
             <span className="font-display font-bold text-lg text-primary">Oakwood Hospital</span>
             <span className="text-[10px] tracking-[0.2em] uppercase text-gold">Trusted Care · Closer to You</span>
