@@ -7,7 +7,7 @@ export function SiteFooter() {
       <div className="container mx-auto px-4 py-14 grid md:grid-cols-4 gap-10">
         <div>
           <div className="flex items-center gap-3 mb-4">
-            <span className="grid place-items-center w-10 h-10 rounded-lg bg-gold/20 text-gold font-display font-bold text-lg">O</span>
+            <img src="/favicon.png" alt="Oakwood Hospital" width={40} height={40} loading="lazy" className="w-10 h-10 object-contain" />
             <span className="font-display text-xl text-gold">Oakwood Hospital</span>
           </div>
           <p className="text-sm text-primary-foreground/80 leading-relaxed">
@@ -45,7 +45,7 @@ export function SiteFooter() {
       <div className="border-t border-primary-foreground/10">
         <div className="container mx-auto px-4 py-5 flex flex-wrap justify-between gap-2 text-xs text-primary-foreground/60">
           <span>© {new Date().getFullYear()} Oakwood Hospital Ltd. All rights reserved.</span>
-          <span>Designed with care · Built on Lovable</span>
+          <span>Designed with care for the Oakwood community</span>
         </div>
       </div>
     </footer>
