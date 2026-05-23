@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { Calendar, Stethoscope } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 export const Route = createFileRoute("/_authenticated/portal/doctor")({
   component: DoctorPortal,
