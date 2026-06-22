@@ -30,7 +30,7 @@ function TeamPage() {
                 <p className="text-xs text-muted-foreground mt-2">{d.title}</p>
                 {d.bio && <p className="text-sm text-muted-foreground mt-2 line-clamp-3">{d.bio}</p>}
                 <p className="text-xs text-muted-foreground mt-3">Available: {(d.schedule_days ?? []).join(", ")}</p>
-                <Button asChild size="sm" className="mt-4 w-full"><Link to="/auth">Book Appointment</Link></Button>
+                <Button asChild size="sm" className="mt-4 w-full"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Book Appointment</Link></Button>
               </div>
             </div>
           ))}

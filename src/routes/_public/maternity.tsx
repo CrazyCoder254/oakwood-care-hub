@@ -30,7 +30,7 @@ export const Route = createFileRoute("/_public/maternity")({
               </li>
             ))}
           </ul>
-          <Button asChild className="mt-6"><Link to="/auth">Book Maternity Appointment</Link></Button>
+          <Button asChild className="mt-6"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Book Maternity Appointment</Link></Button>
         </div>
       </section>
     </>

@@ -35,7 +35,7 @@ function CoursesPage() {
                 ))}
               </ul>
               <p className="text-xs text-muted-foreground mt-4">{c.price_text}</p>
-              <Button asChild className="mt-6"><Link to="/auth">Enrol now</Link></Button>
+              <Button asChild className="mt-6"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Enrol now</Link></Button>
             </div>
           </div>
         ))}

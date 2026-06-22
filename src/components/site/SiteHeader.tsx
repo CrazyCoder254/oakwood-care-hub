@@ -60,8 +60,8 @@ export function SiteHeader() {
             </>
           ) : (
             <>
-              <Button asChild variant="ghost" size="sm"><Link to="/auth">Sign in</Link></Button>
-              <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground"><Link to="/auth" search={{ mode: "signup" }}>Book Appointment</Link></Button>
+              <Button asChild variant="ghost" size="sm"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Sign in</Link></Button>
+              <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground"><Link to="/auth" search={{ mode: "signup", redirect: "/portal/patient" }}>Book Appointment</Link></Button>
             </>
           )}
         </div>
@@ -81,7 +81,7 @@ export function SiteHeader() {
             {user ? (
               <Button asChild className="w-full"><Link to={portalPath} onClick={() => setOpen(false)}>Go to Portal</Link></Button>
             ) : (
-              <Button asChild className="w-full"><Link to="/auth" onClick={() => setOpen(false)}>Sign in / Book</Link></Button>
+              <Button asChild className="w-full"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }} onClick={() => setOpen(false)}>Sign in / Book</Link></Button>
             )}
           </div>
         </div>

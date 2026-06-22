@@ -50,7 +50,7 @@ function HomePage() {
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>
             <Button asChild size="lg" className="bg-gold text-gold-foreground hover:bg-gold/90 font-semibold">
-              <Link to="/auth"><Calendar className="h-4 w-4 mr-2" /> Book Appointment</Link>
+              <Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}><Calendar className="h-4 w-4 mr-2" /> Book Appointment</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="bg-transparent border-gold/50 text-gold hover:bg-gold/10">
               <Link to="/services">Explore Services <ArrowRight className="h-4 w-4 ml-2" /></Link>
@@ -121,7 +121,7 @@ function HomePage() {
                 <h3 className="font-display text-lg text-primary">{d.name}</h3>
                 <p className="text-xs text-gold uppercase tracking-wider mt-1">{d.specialty}</p>
                 <p className="text-xs text-muted-foreground mt-2">{d.title}</p>
-                <Button asChild size="sm" className="mt-4 w-full"><Link to="/auth">Book with {d.name.split(" ")[0]}</Link></Button>
+                <Button asChild size="sm" className="mt-4 w-full"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Book with {d.name.split(" ")[0]}</Link></Button>
               </div>
             </div>
           ))}
@@ -152,7 +152,7 @@ function HomePage() {
           </div>
           <div className="flex gap-3">
             <Button asChild size="lg" className="bg-gold text-gold-foreground hover:bg-gold/90"><a href="tel:+254720126297"><Phone className="h-4 w-4 mr-2" /> +254 720 126 297</a></Button>
-            <Button asChild size="lg" variant="outline" className="bg-transparent border-gold/40 text-gold hover:bg-gold/10"><Link to="/auth">Book Online</Link></Button>
+            <Button asChild size="lg" variant="outline" className="bg-transparent border-gold/40 text-gold hover:bg-gold/10"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Book Online</Link></Button>
           </div>
         </div>
       </section>
