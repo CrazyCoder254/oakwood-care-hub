@@ -1,6 +1,5 @@
 import { createFileRoute, redirect, useRouter, useSearch } from "@tanstack/react-router";
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
@@ -21,8 +20,23 @@ const schema = z.object({
 export const Route = createFileRoute("/auth")({
   validateSearch: (s: Record<string, unknown>) => ({ mode: (s.mode as string) === "signup" ? "signup" : "login", redirect: (s.redirect as string) || "/portal/patient" }),
   beforeLoad: async ({ search }) => {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session) throw redirect({ to: search.redirect as any });
+    // Skip session check during SSR on server side
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) throw redirect({ to: search.redirect as any });
+    } catch (error) {
+      // If it's a redirect error, re-throw it
+      if (error && typeof error === 'object' && 'status' in error) {
+        throw error;
+      }
+      console.error('[Auth Route] Error checking session:', error);
+      // Continue if there's an error checking session
+    }
   },
   component: AuthPage,
 });
@@ -43,6 +57,7 @@ function AuthPage() {
     if (!result.success) { toast.error(result.error.issues[0].message); return; }
     setLoading(true);
     try {
+      const { supabase } = await import("@/integrations/supabase/client");
       if (mode === "signup") {
         const { error } = await supabase.auth.signUp({
           email: form.email, password: form.password,

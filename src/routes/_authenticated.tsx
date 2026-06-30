@@ -1,13 +1,27 @@
 import { createFileRoute, redirect, Outlet, Link } from "@tanstack/react-router";
-import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/use-auth";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 
 export const Route = createFileRoute("/_authenticated")({
   beforeLoad: async ({ location }) => {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) throw redirect({ to: "/auth", search: { mode: "login", redirect: location.pathname } });
+    // Skip auth check during SSR on server side
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw redirect({ to: "/auth", search: { mode: "login", redirect: location.pathname } });
+    } catch (error) {
+      // If it's a redirect error, re-throw it
+      if (error && typeof error === 'object' && 'status' in error) {
+        throw error;
+      }
+      console.error('[Auth Route] Error checking session:', error);
+      throw redirect({ to: "/auth", search: { mode: "login", redirect: location.pathname } });
+    }
   },
   component: AuthedLayout,
 });

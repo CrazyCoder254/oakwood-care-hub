@@ -7,10 +7,17 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
     return await next();
   } catch (error) {
+    // Log detailed error information for debugging
+    console.error('[TanStack Start] Server error:', {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+      error,
+    });
+
     if (error != null && typeof error === "object" && "statusCode" in error) {
       throw error;
     }
-    console.error(error);
+    
     return new Response(FALLBACK_HTML, {
       status: 500,
       headers: { "content-type": "text/html; charset=utf-8" },

@@ -5,7 +5,6 @@ import {
 import { useEffect } from "react";
 import appCss from "../styles.css?url";
 import { AuthProvider } from "@/hooks/use-auth";
-import { supabase } from "@/integrations/supabase/client";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -80,13 +79,36 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function AuthListener() {
   const router = useRouter();
   const qc = useQueryClient();
+  
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
-      router.invalidate();
-      qc.invalidateQueries();
-    });
-    return () => subscription.unsubscribe();
+    // Only run on client side
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    let unsubscribe: (() => void) | undefined;
+
+    // Dynamically import supabase on client only
+    (async () => {
+      try {
+        const { supabase } = await import('@/integrations/supabase/client');
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
+          router.invalidate();
+          qc.invalidateQueries();
+        });
+        unsubscribe = () => subscription.unsubscribe();
+      } catch (error) {
+        console.error('[AuthListener] Failed to initialize Supabase auth listener:', error);
+      }
+    })();
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
   }, [router, qc]);
+  
   return null;
 }
 

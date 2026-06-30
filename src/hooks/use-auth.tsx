@@ -1,5 +1,4 @@
 import { useEffect, useState, createContext, useContext, ReactNode } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import type { Session, User } from "@supabase/supabase-js";
 
 export type AppRole = "patient" | "doctor" | "admin";
@@ -23,41 +22,68 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, s) => {
-      setSession(s);
-      if (s?.user) {
-        // defer DB call
-        setTimeout(async () => {
-          const { data } = await supabase
-            .from("user_roles")
-            .select("role")
-            .eq("user_id", s.user.id)
-            .order("role");
-          const roles = (data ?? []).map(r => r.role as AppRole);
-          const best = roles.includes("admin") ? "admin" : roles.includes("doctor") ? "doctor" : roles[0] ?? "patient";
-          setRole(best);
-        }, 0);
-      } else {
-        setRole(null);
-      }
-    });
-
-    supabase.auth.getSession().then(({ data: { session: s } }) => {
-      setSession(s);
+    // Only run on client side
+    if (typeof window === 'undefined') {
       setLoading(false);
-      if (s?.user) {
-        supabase.from("user_roles").select("role").eq("user_id", s.user.id).then(({ data }) => {
-          const roles = (data ?? []).map(r => r.role as AppRole);
-          const best = roles.includes("admin") ? "admin" : roles.includes("doctor") ? "doctor" : roles[0] ?? "patient";
-          setRole(best);
-        });
-      }
-    });
+      return;
+    }
 
-    return () => subscription.unsubscribe();
+    (async () => {
+      try {
+        const { supabase } = await import("@/integrations/supabase/client");
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, s) => {
+          setSession(s);
+          if (s?.user) {
+            // defer DB call
+            setTimeout(async () => {
+              try {
+                const { data } = await supabase
+                  .from("user_roles")
+                  .select("role")
+                  .eq("user_id", s.user.id)
+                  .order("role");
+                const roles = (data ?? []).map(r => r.role as AppRole);
+                const best = roles.includes("admin") ? "admin" : roles.includes("doctor") ? "doctor" : roles[0] ?? "patient";
+                setRole(best);
+              } catch (error) {
+                console.error('[AuthProvider] Error fetching user role:', error);
+              }
+            }, 0);
+          } else {
+            setRole(null);
+          }
+        });
+
+        const { data: { session: s } } = await supabase.auth.getSession();
+        setSession(s);
+        setLoading(false);
+        if (s?.user) {
+          try {
+            const { data } = await supabase.from("user_roles").select("role").eq("user_id", s.user.id);
+            const roles = (data ?? []).map(r => r.role as AppRole);
+            const best = roles.includes("admin") ? "admin" : roles.includes("doctor") ? "doctor" : roles[0] ?? "patient";
+            setRole(best);
+          } catch (error) {
+            console.error('[AuthProvider] Error fetching user role:', error);
+          }
+        }
+
+        return () => subscription.unsubscribe();
+      } catch (error) {
+        console.error('[AuthProvider] Failed to initialize Supabase:', error);
+        setLoading(false);
+      }
+    })();
   }, []);
 
-  const signOut = async () => { await supabase.auth.signOut(); };
+  const signOut = async () => {
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      await supabase.auth.signOut();
+    } catch (error) {
+      console.error('[AuthProvider] Sign out error:', error);
+    }
+  };
 
   return (
     <AuthContext.Provider value={{ user: session?.user ?? null, session, role, loading, signOut }}>
