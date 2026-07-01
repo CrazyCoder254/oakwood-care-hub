@@ -1,7 +1,7 @@
 const insurers = [
   { name: "SHA", domain: "sha.go.ke" },
   { name: "NHIF", domain: "nhif.or.ke" },
-  { name: "Linda Mama", domain: "nhif.or.ke" },
+  { name: "Linda Mama", domain: "health.go.ke" },
   { name: "Britam", domain: "britam.com" },
   { name: "Jubilee", domain: "jubileeinsurance.com" },
   { name: "AAR", domain: "aar-insurance.com" },
@@ -30,20 +30,14 @@ export function InsuranceStrip() {
               title={name}
             >
               <img
-                src={`https://logo.clearbit.com/${domain}`}
+                src={`https://www.google.com/s2/favicons?sz=128&domain=${domain}`}
                 alt={`${name} logo`}
                 loading="lazy"
-                width={96}
+                width={48}
                 height={48}
-                className="h-10 w-auto max-w-[120px] object-contain grayscale group-hover:grayscale-0 transition"
-                onError={(e) => {
-                  const img = e.currentTarget;
-                  img.style.display = "none";
-                  img.nextElementSibling?.classList.remove("hidden");
-                }}
+                className="h-10 w-10 object-contain"
               />
-              <span className="hidden text-sm font-medium text-primary">{name}</span>
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{name}</span>
+              <span className="text-xs font-medium text-primary text-center leading-tight">{name}</span>
             </div>
           ))}
         </div>
@@ -51,3 +45,4 @@ export function InsuranceStrip() {
     </section>
   );
 }
+
