@@ -8,6 +8,8 @@ import { ArrowRight, Calendar, GraduationCap, HeartPulse, Phone, ShieldCheck, Sp
 import hero from "@/assets/hero-hospital.jpg";
 import maternity from "@/assets/maternity.jpg";
 import training from "@/assets/training.jpg";
+import emergency from "@/assets/hero-emergency.jpg";
+import surgery from "@/assets/hero-surgery.jpg";
 
 export const Route = createFileRoute("/_public/")({
   component: HomePage,
@@ -35,8 +37,16 @@ function HomePage() {
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src={hero} alt="" width={1920} height={1080} className="w-full h-full object-cover opacity-30" />
-          <div className="absolute inset-0 gradient-hero opacity-90" />
+          {[hero, emergency, surgery, maternity].map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt=""
+              className="hero-slide absolute inset-0 w-full h-full object-cover"
+              style={{ animationDelay: `${i * 6}s` }}
+            />
+          ))}
+          <div className="absolute inset-0 gradient-hero opacity-85" />
         </div>
         <div className="relative container mx-auto px-4 py-24 md:py-36 text-center text-primary-foreground">
           <span className="inline-flex items-center gap-2 text-xs tracking-[0.3em] uppercase text-gold animate-fade-up">
