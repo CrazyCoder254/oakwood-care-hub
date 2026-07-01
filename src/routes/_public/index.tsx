@@ -24,6 +24,15 @@ function HomePage() {
     },
   });
 
+  const { data: doctors } = useQuery({
+    queryKey: ["doctors", "preview"],
+    queryFn: async () => {
+      const { data } = await supabase.from("doctors").select("*").eq("is_active", true).limit(4);
+      return data ?? [];
+    },
+  });
+
+
 
   return (
     <>
