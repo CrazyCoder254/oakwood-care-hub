@@ -24,13 +24,6 @@ function HomePage() {
     },
   });
 
-  const { data: doctors } = useQuery({
-    queryKey: ["doctors", "preview"],
-    queryFn: async () => {
-      const { data } = await supabase.from("doctors").select("*").eq("is_active", true).limit(4);
-      return data ?? [];
-    },
-  });
 
   return (
     <>
@@ -118,25 +111,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* TEAM PREVIEW */}
-      <section className="py-20 container mx-auto px-4">
-        <SectionHeader eyebrow="Our team" title="Clinicians who care, deeply" subtitle="Qualified, warm and ready to walk with you on your health journey." />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {doctors?.map(d => (
-            <div key={d.id} className="bg-card rounded-xl overflow-hidden border border-border shadow-soft">
-              <div className="aspect-[4/5] bg-secondary overflow-hidden">
-                {d.photo_url && <img src={d.photo_url} alt={d.name} loading="lazy" className="w-full h-full object-cover" />}
-              </div>
-              <div className="p-5">
-                <h3 className="font-display text-lg text-primary">{d.name}</h3>
-                <p className="text-xs text-gold uppercase tracking-wider mt-1">{d.specialty}</p>
-                <p className="text-xs text-muted-foreground mt-2">{d.title}</p>
-                <Button asChild size="sm" className="mt-4 w-full"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Book with {d.name.split(" ")[0]}</Link></Button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* TRAINING CTA */}
       <section className="container mx-auto px-4 pb-20">
