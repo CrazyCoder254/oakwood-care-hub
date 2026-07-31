@@ -1,16 +1,18 @@
+import { ShieldCheck } from "lucide-react";
+
 const insurers = [
-  { name: "SHA", domain: "sha.go.ke" },
-  { name: "NHIF", domain: "nhif.or.ke" },
-  { name: "Linda Mama", domain: "health.go.ke" },
-  { name: "Britam", domain: "britam.com" },
-  { name: "Jubilee", domain: "jubileeinsurance.com" },
-  { name: "AAR", domain: "aar-insurance.com" },
-  { name: "MUA", domain: "mua.co.ke" },
-  { name: "Liaison", domain: "liaisongroup.net" },
-  { name: "M-TIBA", domain: "mtiba.com" },
-  { name: "Madison", domain: "madison.co.ke" },
-  { name: "CIC", domain: "cic.co.ke" },
-  { name: "Old Mutual", domain: "oldmutual.co.ke" },
+  { name: "SHA", full: "Social Health Authority" },
+  { name: "NHIF", full: "National Hospital Insurance Fund" },
+  { name: "Linda Mama", full: "Linda Mama Programme" },
+  { name: "Britam", full: "Britam Insurance" },
+  { name: "Jubilee", full: "Jubilee Health Insurance" },
+  { name: "AAR", full: "AAR Insurance" },
+  { name: "MUA", full: "MUA Insurance" },
+  { name: "Liaison", full: "Liaison Group" },
+  { name: "M-TIBA", full: "M-TIBA" },
+  { name: "Madison", full: "Madison Insurance" },
+  { name: "CIC", full: "CIC Insurance Group" },
+  { name: "Old Mutual", full: "Old Mutual" },
 ];
 
 export function InsuranceStrip() {
@@ -23,21 +25,17 @@ export function InsuranceStrip() {
           <div className="gold-divider w-24 mx-auto mt-4" />
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {insurers.map(({ name, domain }) => (
+          {insurers.map(({ name, full }) => (
             <div
               key={name}
               className="group flex flex-col items-center justify-center gap-2 px-4 py-5 rounded-xl bg-card border border-border shadow-soft hover:shadow-gold transition-all"
-              title={name}
+              title={full}
             >
-              <img
-                src={`https://www.google.com/s2/favicons?sz=128&domain=${domain}`}
-                alt={`${name} logo`}
-                loading="lazy"
-                width={48}
-                height={48}
-                className="h-10 w-10 object-contain"
-              />
-              <span className="text-xs font-medium text-primary text-center leading-tight">{name}</span>
+              <span className="w-11 h-11 rounded-lg gradient-purple grid place-items-center">
+                <ShieldCheck className="h-5 w-5 text-gold" />
+              </span>
+              <span className="text-sm font-display font-semibold text-primary text-center leading-tight">{name}</span>
+              <span className="text-[10px] text-muted-foreground text-center leading-tight line-clamp-2">{full}</span>
             </div>
           ))}
         </div>
@@ -45,4 +43,3 @@ export function InsuranceStrip() {
     </section>
   );
 }
-
