@@ -127,8 +127,8 @@ function HomePage() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {doctors?.map(d => (
             <div key={d.id} className="bg-card rounded-xl overflow-hidden border border-border shadow-soft">
-              <div className="aspect-[4/5] bg-secondary overflow-hidden">
-                {d.photo_url && <img src={d.photo_url} alt={d.name} loading="lazy" className="w-full h-full object-cover" />}
+              <div className="aspect-[4/5] gradient-purple grid place-items-center">
+                <SpecialtyIcon specialty={d.specialty} className="h-16 w-16 text-primary-foreground/90" />
               </div>
               <div className="p-5">
                 <h3 className="font-display text-lg text-primary">{d.name}</h3>
