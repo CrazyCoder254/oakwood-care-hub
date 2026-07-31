@@ -91,7 +91,7 @@ function AuthPage() {
       <main className="flex-1 grid place-items-center px-4 py-16">
         <div className="w-full max-w-md bg-card rounded-2xl shadow-soft border border-border overflow-hidden">
           <div className="gradient-purple p-8 text-center">
-            <h1 className="font-display text-3xl text-gold">Welcome to Oakwood</h1>
+            <h1 className="font-display text-3xl text-primary-foreground">Welcome to Oakwood</h1>
             <p className="text-primary-foreground/80 text-sm mt-2">Sign in to book appointments & manage your care.</p>
           </div>
           <div className="p-8">

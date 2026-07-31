@@ -18,7 +18,7 @@ export function InsuranceStrip() {
     <section className="py-14 bg-cream">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <span className="text-xs tracking-[0.25em] uppercase text-gold font-medium">We Accept</span>
+          <span className="text-xs tracking-[0.25em] uppercase text-primary/70 font-medium">We Accept</span>
           <h2 className="font-display text-3xl md:text-4xl text-primary mt-2">Insurance Partners</h2>
           <div className="gold-divider w-24 mx-auto mt-4" />
         </div>

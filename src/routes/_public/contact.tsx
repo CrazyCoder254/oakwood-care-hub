@@ -27,7 +27,7 @@ function ContactPage() {
         <div>
           <h2 className="font-display text-2xl text-primary">Get in touch</h2>
           <div className="mt-6 space-y-4 text-sm">
-            <div className="flex items-start gap-3"><span className="w-9 h-9 rounded-md gradient-purple grid place-items-center text-gold"><Phone className="h-4 w-4" /></span><div><p className="font-medium">Call us</p><p className="text-muted-foreground">+254 720 126 297 · +254 705 185 429</p></div></div>
+            <div className="flex items-start gap-3"><span className="w-9 h-9 rounded-md gradient-purple grid place-items-center text-gold"><Phone className="h-4 w-4" /></span><div><p className="font-medium">Call us</p><p className="text-muted-foreground">+254 705 185 297 · +254 720 126 297</p></div></div>
             <div className="flex items-start gap-3"><span className="w-9 h-9 rounded-md gradient-purple grid place-items-center text-gold"><Mail className="h-4 w-4" /></span><div><p className="font-medium">Email</p><p className="text-muted-foreground">oakwoodhospital@outlook.com</p></div></div>
             <div className="flex items-start gap-3"><span className="w-9 h-9 rounded-md gradient-purple grid place-items-center text-gold"><MapPin className="h-4 w-4" /></span><div><p className="font-medium">Address</p><p className="text-muted-foreground">Oakwood Hospital · Nairobi · P.O. Box 395-10230</p></div></div>
           </div>

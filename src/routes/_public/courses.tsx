@@ -24,7 +24,7 @@ function CoursesPage() {
           <div key={c.id} className="grid md:grid-cols-2 gap-10 bg-card rounded-3xl overflow-hidden border border-border shadow-soft">
             <div className="aspect-video md:aspect-auto"><img src={training} alt={c.title} loading="lazy" className="w-full h-full object-cover" /></div>
             <div className="p-8 md:p-12">
-              <span className="inline-flex items-center gap-2 text-xs tracking-[0.25em] uppercase text-gold"><GraduationCap className="h-3 w-3" /> Certificate</span>
+              <span className="inline-flex items-center gap-2 text-xs tracking-[0.25em] uppercase text-primary/70"><GraduationCap className="h-3 w-3" /> Certificate</span>
               <h2 className="font-display text-3xl text-primary mt-3">{c.title}</h2>
               <p className="text-muted-foreground mt-3">{c.description}</p>
               <p className="mt-4 text-sm flex items-center gap-2 text-primary"><Clock className="h-4 w-4 text-gold" /> {c.duration}</p>

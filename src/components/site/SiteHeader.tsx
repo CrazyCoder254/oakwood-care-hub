@@ -26,8 +26,8 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 backdrop-blur-md bg-cream/80 border-b border-border/60">
       <div className="bg-primary text-primary-foreground text-xs">
         <div className="container mx-auto px-4 py-1.5 flex flex-wrap justify-between gap-2">
-          <span className="flex items-center gap-2"><Phone className="h-3 w-3 text-gold" /> +254 720 126 297 · +254 705 185 429</span>
-          <span className="text-gold font-medium tracking-wide">24/7 Trusted Care, Closer to You</span>
+          <span className="flex items-center gap-2"><Phone className="h-3 w-3 text-gold" /> +254 705 185 297 · +254 720 126 297</span>
+          <span className="text-primary-foreground font-medium tracking-wide">24/7 Trusted Care, Closer to You</span>
         </div>
       </div>
       <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
@@ -35,7 +35,7 @@ export function SiteHeader() {
           <img src="/favicon.png" alt="Oakwood Hospital logo" width={40} height={40} className="w-10 h-10 object-contain" />
           <span className="flex flex-col leading-none">
             <span className="font-display font-bold text-lg text-primary">Oakwood Hospital</span>
-            <span className="text-[10px] tracking-[0.2em] uppercase text-gold">Trusted Care · Closer to You</span>
+            <span className="text-[10px] tracking-[0.2em] uppercase text-primary/70">Trusted Care · Closer to You</span>
           </span>
         </Link>
 

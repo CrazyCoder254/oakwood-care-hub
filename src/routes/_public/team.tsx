@@ -26,7 +26,7 @@ function TeamPage() {
               </div>
               <div className="p-5">
                 <h3 className="font-display text-lg text-primary">{d.name}</h3>
-                <p className="text-xs text-gold uppercase tracking-wider mt-1">{d.specialty}</p>
+                <p className="text-xs text-primary/70 uppercase tracking-wider mt-1">{d.specialty}</p>
                 <p className="text-xs text-muted-foreground mt-2">{d.title}</p>
                 {d.bio && <p className="text-sm text-muted-foreground mt-2 line-clamp-3">{d.bio}</p>}
                 <p className="text-xs text-muted-foreground mt-3">Available: {(d.schedule_days ?? []).join(", ")}</p>
