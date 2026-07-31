@@ -1,18 +1,5 @@
 import { ShieldCheck } from "lucide-react";
-
-const insurers = [
-  { name: "SHA", full: "Social Health Authority" },
-  { name: "Linda Mama", full: "Linda Mama Programme" },
-  { name: "Britam", full: "Britam Insurance" },
-  { name: "Jubilee", full: "Jubilee Health Insurance" },
-  { name: "AAR", full: "AAR Insurance" },
-  { name: "MUA", full: "MUA Insurance" },
-  { name: "Liaison", full: "Liaison Group" },
-  { name: "M-TIBA", full: "M-TIBA" },
-  { name: "Madison", full: "Madison Insurance" },
-  { name: "CIC", full: "CIC Insurance Group" },
-  { name: "Old Mutual", full: "Old Mutual" },
-];
+import { insurers } from "./insurers";
 
 export function InsuranceStrip() {
   return (
