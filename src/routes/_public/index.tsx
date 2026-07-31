@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/site/Section";
 import { InsuranceStrip } from "@/components/site/InsuranceStrip";
+import { SpecialtyIcon } from "@/components/site/SpecialtyIcon";
 import { ArrowRight, Calendar, GraduationCap, HeartPulse, Phone, ShieldCheck, Sparkles } from "lucide-react";
 import hero from "@/assets/hero-hospital.jpg";
 import maternity from "@/assets/maternity.jpg";
