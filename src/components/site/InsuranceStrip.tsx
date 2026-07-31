@@ -2,7 +2,6 @@ import { ShieldCheck } from "lucide-react";
 
 const insurers = [
   { name: "SHA", full: "Social Health Authority" },
-  { name: "NHIF", full: "National Hospital Insurance Fund" },
   { name: "Linda Mama", full: "Linda Mama Programme" },
   { name: "Britam", full: "Britam Insurance" },
   { name: "Jubilee", full: "Jubilee Health Insurance" },
