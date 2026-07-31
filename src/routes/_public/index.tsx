@@ -151,7 +151,7 @@ function HomePage() {
             <p className="mt-3 text-muted-foreground">6 months. Anatomy, patient care, infection control, first aid, palliative & home care — taught by working clinicians.</p>
             <Button asChild className="mt-6"><Link to="/courses">Explore the course <ArrowRight className="h-4 w-4 ml-2" /></Link></Button>
           </div>
-          <div className="aspect-[4/3] md:aspect-auto"><img src={training} alt="Training" loading="lazy" className="w-full h-full object-cover" /></div>
+          <div className="aspect-[4/3] md:aspect-auto"><img src={training} alt="Students training as health care assistants at Oakwood Training Institute" loading="lazy" width={1024} height={768} className="w-full h-full object-cover" /></div>
         </div>
       </section>
 
