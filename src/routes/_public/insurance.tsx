@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/Section";
 
-const insurers = ["SHA","NHIF","Linda Mama","Britam","Jubilee","AAR","MUA","Liaison","M-TIBA","Madison","CIC","Old Mutual","First Assurance","ICEA Lion","UAP","GA Insurance"];
+const insurers = ["SHA","Linda Mama","Britam","Jubilee","AAR","MUA","Liaison","M-TIBA","Madison","CIC","Old Mutual","First Assurance","ICEA Lion","UAP","GA Insurance"];
 
 export const Route = createFileRoute("/_public/insurance")({
   head: () => ({ meta: [{ title: "Insurance Partners — Oakwood Hospital" }] }),
