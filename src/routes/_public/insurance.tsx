@@ -13,7 +13,7 @@ export const Route = createFileRoute("/_public/insurance")({
           {insurers.map(i => (
             <div key={i} className="bg-card border border-border rounded-xl p-6 text-center shadow-soft hover:shadow-gold transition-all">
               <p className="font-display text-lg text-primary">{i}</p>
-              <p className="text-xs text-gold uppercase tracking-wider mt-1">Accepted</p>
+              <p className="text-xs text-primary/70 uppercase tracking-wider mt-1">Accepted</p>
             </div>
           ))}
         </div>

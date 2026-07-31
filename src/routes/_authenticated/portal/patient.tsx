@@ -96,7 +96,7 @@ function PatientPortal() {
             <div key={a.id} className="text-sm border-b border-border py-2 last:border-0">
               <p className="font-medium">{a.service}</p>
               <p className="text-xs text-muted-foreground">{a.appointment_date} · {a.appointment_time?.toString().slice(0,5)}</p>
-              <p className="text-xs text-gold uppercase tracking-wider mt-1">{a.status}</p>
+              <p className="text-xs text-primary/70 uppercase tracking-wider mt-1">{a.status}</p>
             </div>
           )) : <p className="text-sm text-muted-foreground">No appointments yet.</p>}
         </div>
@@ -105,7 +105,7 @@ function PatientPortal() {
           {enrollments?.length ? enrollments.map(e => (
             <div key={e.id} className="text-sm border-b border-border py-2 last:border-0">
               <p className="font-medium">{(e as any).courses?.title}</p>
-              <p className="text-xs text-gold uppercase tracking-wider">{e.status}</p>
+              <p className="text-xs text-primary/70 uppercase tracking-wider">{e.status}</p>
             </div>
           )) : <p className="text-sm text-muted-foreground">No enrolments yet.</p>}
         </div>

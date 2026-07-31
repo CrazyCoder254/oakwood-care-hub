@@ -31,13 +31,13 @@ function AboutPage() {
       <PageHero eyebrow="Oakwood Hospital Charter" title="About Us" subtitle="We are committed to providing health care to all our patients regardless of gender, race, religion, and cultural beliefs." />
       <section className="container mx-auto px-4 py-20 grid md:grid-cols-2 gap-10">
         <div className="bg-card rounded-2xl p-8 border border-border shadow-soft">
-          <span className="text-xs tracking-[0.25em] uppercase text-gold">Vision</span>
+          <span className="text-xs tracking-[0.25em] uppercase text-primary/70">Vision</span>
           <h2 className="font-display text-3xl text-primary mt-3">{sections?.about_vision?.title}</h2>
           <p className="mt-3 text-muted-foreground leading-relaxed">{sections?.about_vision?.body}</p>
         </div>
         <div className="bg-primary text-primary-foreground rounded-2xl p-8 shadow-soft">
-          <span className="text-xs tracking-[0.25em] uppercase text-gold">Mission</span>
-          <h2 className="font-display text-3xl text-gold mt-3">{sections?.about_mission?.title}</h2>
+          <span className="text-xs tracking-[0.25em] uppercase text-primary-foreground/80">Mission</span>
+          <h2 className="font-display text-3xl text-primary-foreground mt-3">{sections?.about_mission?.title}</h2>
           <p className="mt-3 text-primary-foreground/85 leading-relaxed">{sections?.about_mission?.body}</p>
         </div>
       </section>

@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/site/Section";
 import { InsuranceStrip } from "@/components/site/InsuranceStrip";
+import { SpecialtyIcon } from "@/components/site/SpecialtyIcon";
 import { ArrowRight, Calendar, GraduationCap, HeartPulse, Phone, ShieldCheck, Sparkles } from "lucide-react";
 import hero from "@/assets/hero-hospital.jpg";
 import maternity from "@/assets/maternity.jpg";
@@ -51,10 +52,10 @@ function HomePage() {
           <div className="absolute inset-0 gradient-hero opacity-85" />
         </div>
         <div className="relative container mx-auto px-4 py-24 md:py-36 text-center text-primary-foreground">
-          <span className="inline-flex items-center gap-2 text-xs tracking-[0.3em] uppercase text-gold animate-fade-up">
+          <span className="inline-flex items-center gap-2 text-xs tracking-[0.3em] uppercase text-primary-foreground/80 animate-fade-up">
             <Sparkles className="h-3 w-3" /> Trusted Care · Closer to You
           </span>
-          <h1 className="font-display text-5xl md:text-7xl text-gold mt-5 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          <h1 className="font-display text-5xl md:text-7xl text-primary-foreground mt-5 animate-fade-up" style={{ animationDelay: "0.1s" }}>
             Compassionate care,<br /><em className="italic font-medium">every day.</em>
           </h1>
           <p className="mt-6 text-base md:text-lg max-w-2xl mx-auto text-primary-foreground/90 animate-fade-up" style={{ animationDelay: "0.2s" }}>
@@ -64,7 +65,7 @@ function HomePage() {
             <Button asChild size="lg" className="bg-gold text-gold-foreground hover:bg-gold/90 font-semibold">
               <Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}><Calendar className="h-4 w-4 mr-2" /> Book Appointment</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="bg-transparent border-gold/50 text-gold hover:bg-gold/10">
+            <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10">
               <Link to="/services">Explore Services <ArrowRight className="h-4 w-4 ml-2" /></Link>
             </Button>
           </div>
@@ -107,8 +108,8 @@ function HomePage() {
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <span className="text-xs tracking-[0.25em] uppercase text-gold">Maternity</span>
-            <h2 className="font-display text-4xl text-gold mt-3">Welcoming new life, with safety and warmth.</h2>
+            <span className="text-xs tracking-[0.25em] uppercase text-primary-foreground/80">Maternity</span>
+            <h2 className="font-display text-4xl text-primary-foreground mt-3">Welcoming new life, with safety and warmth.</h2>
             <p className="mt-4 text-primary-foreground/85 leading-relaxed">
               Normal & Caesarean delivery, antenatal & postnatal clinics, child welfare, immunization, newborn unit and obstetric ultrasound — all under one roof, 24/7.
             </p>
@@ -127,12 +128,12 @@ function HomePage() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {doctors?.map(d => (
             <div key={d.id} className="bg-card rounded-xl overflow-hidden border border-border shadow-soft">
-              <div className="aspect-[4/5] bg-secondary overflow-hidden">
-                {d.photo_url && <img src={d.photo_url} alt={d.name} loading="lazy" className="w-full h-full object-cover" />}
+              <div className="aspect-[4/5] gradient-purple grid place-items-center">
+                <SpecialtyIcon specialty={d.specialty} className="h-16 w-16 text-primary-foreground/90" />
               </div>
               <div className="p-5">
                 <h3 className="font-display text-lg text-primary">{d.name}</h3>
-                <p className="text-xs text-gold uppercase tracking-wider mt-1">{d.specialty}</p>
+                <p className="text-xs text-primary/70 uppercase tracking-wider mt-1">{d.specialty}</p>
                 <p className="text-xs text-muted-foreground mt-2">{d.title}</p>
                 <Button asChild size="sm" className="mt-4 w-full"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Book with {d.name.split(" ")[0]}</Link></Button>
               </div>
@@ -145,12 +146,12 @@ function HomePage() {
       <section className="container mx-auto px-4 pb-20">
         <div className="rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-soft border border-border">
           <div className="bg-cream p-10 md:p-14">
-            <span className="text-xs tracking-[0.25em] uppercase text-gold">Oakwood Training Institute</span>
+            <span className="text-xs tracking-[0.25em] uppercase text-primary/70">Oakwood Training Institute</span>
             <h2 className="font-display text-3xl md:text-4xl text-primary mt-3">Certificate in Health Care Assistant</h2>
             <p className="mt-3 text-muted-foreground">6 months. Anatomy, patient care, infection control, first aid, palliative & home care — taught by working clinicians.</p>
             <Button asChild className="mt-6"><Link to="/courses">Explore the course <ArrowRight className="h-4 w-4 ml-2" /></Link></Button>
           </div>
-          <div className="aspect-[4/3] md:aspect-auto"><img src={training} alt="Training" loading="lazy" className="w-full h-full object-cover" /></div>
+          <div className="aspect-[4/3] md:aspect-auto"><img src={training} alt="Students training as health care assistants at Oakwood Training Institute" loading="lazy" width={1024} height={768} className="w-full h-full object-cover" /></div>
         </div>
       </section>
 
@@ -160,12 +161,12 @@ function HomePage() {
       <section className="bg-primary text-primary-foreground py-14">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="font-display text-2xl text-gold">Need care now?</h3>
+            <h3 className="font-display text-2xl text-primary-foreground">Need care now?</h3>
             <p className="text-sm text-primary-foreground/80 mt-1">Call our 24/7 line or book online.</p>
           </div>
           <div className="flex gap-3">
-            <Button asChild size="lg" className="bg-gold text-gold-foreground hover:bg-gold/90"><a href="tel:+254720126297"><Phone className="h-4 w-4 mr-2" /> +254 720 126 297</a></Button>
-            <Button asChild size="lg" variant="outline" className="bg-transparent border-gold/40 text-gold hover:bg-gold/10"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Book Online</Link></Button>
+            <Button asChild size="lg" className="bg-gold text-gold-foreground hover:bg-gold/90"><a href="tel:+254705185297"><Phone className="h-4 w-4 mr-2" /> +254 705 185 297</a></Button>
+            <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Book Online</Link></Button>
           </div>
         </div>
       </section>

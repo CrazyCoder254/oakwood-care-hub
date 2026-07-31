@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { PageHero } from "@/components/site/Section";
 import { Button } from "@/components/ui/button";
+import { SpecialtyIcon } from "@/components/site/SpecialtyIcon";
 
 export const Route = createFileRoute("/_public/team")({
   head: () => ({ meta: [{ title: "Our Team — Oakwood Hospital" }, { name: "description", content: "Meet the warm, qualified clinicians at Oakwood Hospital." }] }),
@@ -21,12 +22,12 @@ function TeamPage() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {doctors?.map(d => (
             <div key={d.id} className="bg-card rounded-xl overflow-hidden border border-border shadow-soft">
-              <div className="aspect-[4/5] bg-secondary overflow-hidden">
-                {d.photo_url && <img src={d.photo_url} alt={d.name} loading="lazy" className="w-full h-full object-cover" />}
+              <div className="aspect-[4/5] gradient-purple grid place-items-center">
+                <SpecialtyIcon specialty={d.specialty} className="h-16 w-16 text-primary-foreground/90" />
               </div>
               <div className="p-5">
                 <h3 className="font-display text-lg text-primary">{d.name}</h3>
-                <p className="text-xs text-gold uppercase tracking-wider mt-1">{d.specialty}</p>
+                <p className="text-xs text-primary/70 uppercase tracking-wider mt-1">{d.specialty}</p>
                 <p className="text-xs text-muted-foreground mt-2">{d.title}</p>
                 {d.bio && <p className="text-sm text-muted-foreground mt-2 line-clamp-3">{d.bio}</p>}
                 <p className="text-xs text-muted-foreground mt-3">Available: {(d.schedule_days ?? []).join(", ")}</p>

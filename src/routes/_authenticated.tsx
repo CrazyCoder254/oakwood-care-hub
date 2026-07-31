@@ -35,8 +35,8 @@ function AuthedLayout() {
         <div className="bg-primary text-primary-foreground">
           <div className="container mx-auto px-4 py-6 flex flex-wrap justify-between items-center gap-3">
             <div>
-              <p className="text-xs tracking-[0.25em] uppercase text-gold">{role ?? "patient"} portal</p>
-              <h1 className="font-display text-2xl text-gold">Welcome back{user?.email ? `, ${user.email.split("@")[0]}` : ""}</h1>
+              <p className="text-xs tracking-[0.25em] uppercase text-primary-foreground/80">{role ?? "patient"} portal</p>
+              <h1 className="font-display text-2xl text-primary-foreground">Welcome back{user?.email ? `, ${user.email.split("@")[0]}` : ""}</h1>
             </div>
             <nav className="flex gap-2 text-sm">
               <Link to="/portal/patient" className="px-3 py-1.5 rounded hover:bg-primary-foreground/10">Patient</Link>

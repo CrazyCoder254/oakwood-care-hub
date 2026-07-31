@@ -20,7 +20,7 @@ export const Route = createFileRoute("/_public/maternity")({
           <img src={maternity} alt="Maternity" loading="lazy" className="w-full object-cover aspect-[4/3]" />
         </div>
         <div>
-          <span className="text-xs tracking-[0.25em] uppercase text-gold">24/7 Service</span>
+          <span className="text-xs tracking-[0.25em] uppercase text-primary/70">24/7 Service</span>
           <h2 className="font-display text-3xl text-primary mt-3">Care for mother & baby</h2>
           <ul className="mt-6 grid grid-cols-1 gap-2">
             {items.map(i => (
