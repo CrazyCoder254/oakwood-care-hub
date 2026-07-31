@@ -39,14 +39,14 @@ function ServicesPage() {
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs tracking-[0.25em] uppercase text-gold">Weekly schedule</span>
-            <h2 className="font-display text-3xl md:text-4xl text-gold mt-2">Specialist Clinics</h2>
+            <span className="text-xs tracking-[0.25em] uppercase text-primary-foreground/80">Weekly schedule</span>
+            <h2 className="font-display text-3xl md:text-4xl text-primary-foreground mt-2">Specialist Clinics</h2>
             <div className="gold-divider w-24 mx-auto mt-4" />
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {specialist.map(s => (
               <div key={s.id} className="bg-primary-foreground/5 border border-gold/20 rounded-xl p-5">
-                <h3 className="font-display text-lg text-gold">{s.title}</h3>
+                <h3 className="font-display text-lg text-primary-foreground">{s.title}</h3>
                 <p className="text-xs uppercase tracking-wider text-primary-foreground/70 mt-1">{(s.available_days ?? []).join(" · ")}</p>
                 <p className="text-sm text-primary-foreground/85 mt-2">{s.description}</p>
               </div>

@@ -64,7 +64,7 @@ function HomePage() {
             <Button asChild size="lg" className="bg-gold text-gold-foreground hover:bg-gold/90 font-semibold">
               <Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}><Calendar className="h-4 w-4 mr-2" /> Book Appointment</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="bg-transparent border-gold/50 text-gold hover:bg-gold/10">
+            <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10">
               <Link to="/services">Explore Services <ArrowRight className="h-4 w-4 ml-2" /></Link>
             </Button>
           </div>
@@ -165,7 +165,7 @@ function HomePage() {
           </div>
           <div className="flex gap-3">
             <Button asChild size="lg" className="bg-gold text-gold-foreground hover:bg-gold/90"><a href="tel:+254705185297"><Phone className="h-4 w-4 mr-2" /> +254 705 185 297</a></Button>
-            <Button asChild size="lg" variant="outline" className="bg-transparent border-gold/40 text-gold hover:bg-gold/10"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Book Online</Link></Button>
+            <Button asChild size="lg" variant="outline" className="bg-transparent border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10"><Link to="/auth" search={{ mode: "login", redirect: "/portal/patient" }}>Book Online</Link></Button>
           </div>
         </div>
       </section>
