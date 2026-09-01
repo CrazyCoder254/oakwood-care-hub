@@ -23,6 +23,7 @@ export function SiteFooter() {
             <li><Link to="/team" className="hover:text-primary-foreground">Our Team</Link></li>
             <li><Link to="/courses" className="hover:text-primary-foreground">Training Institute</Link></li>
             <li><Link to="/insurance" className="hover:text-primary-foreground">Insurance Partners</Link></li>
+            <li><Link to="/careers" className="hover:text-primary-foreground">Careers</Link></li>
           </ul>
         </div>
         <div>

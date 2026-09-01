@@ -19,6 +19,7 @@ import { Route as PublicMaternityRouteImport } from './routes/_public/maternity'
 import { Route as PublicInsuranceRouteImport } from './routes/_public/insurance'
 import { Route as PublicCoursesRouteImport } from './routes/_public/courses'
 import { Route as PublicContactRouteImport } from './routes/_public/contact'
+import { Route as PublicCareersRouteImport } from './routes/_public/careers'
 import { Route as PublicAboutRouteImport } from './routes/_public/about'
 import { Route as AuthenticatedPortalPatientRouteImport } from './routes/_authenticated/portal/patient'
 import { Route as AuthenticatedPortalDoctorRouteImport } from './routes/_authenticated/portal/doctor'
@@ -72,6 +73,11 @@ const PublicContactRoute = PublicContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => PublicRoute,
 } as any)
+const PublicCareersRoute = PublicCareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => PublicRoute,
+} as any)
 const PublicAboutRoute = PublicAboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/': typeof PublicIndexRoute
   '/auth': typeof AuthRoute
   '/about': typeof PublicAboutRoute
+  '/careers': typeof PublicCareersRoute
   '/contact': typeof PublicContactRoute
   '/courses': typeof PublicCoursesRoute
   '/insurance': typeof PublicInsuranceRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/': typeof PublicIndexRoute
   '/auth': typeof AuthRoute
   '/about': typeof PublicAboutRoute
+  '/careers': typeof PublicCareersRoute
   '/contact': typeof PublicContactRoute
   '/courses': typeof PublicCoursesRoute
   '/insurance': typeof PublicInsuranceRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/_public': typeof PublicRouteWithChildren
   '/auth': typeof AuthRoute
   '/_public/about': typeof PublicAboutRoute
+  '/_public/careers': typeof PublicCareersRoute
   '/_public/contact': typeof PublicContactRoute
   '/_public/courses': typeof PublicCoursesRoute
   '/_public/insurance': typeof PublicInsuranceRoute
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/about'
+    | '/careers'
     | '/contact'
     | '/courses'
     | '/insurance'
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/about'
+    | '/careers'
     | '/contact'
     | '/courses'
     | '/insurance'
@@ -176,6 +187,7 @@ export interface FileRouteTypes {
     | '/_public'
     | '/auth'
     | '/_public/about'
+    | '/_public/careers'
     | '/_public/contact'
     | '/_public/courses'
     | '/_public/insurance'
@@ -266,6 +278,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicContactRouteImport
       parentRoute: typeof PublicRoute
     }
+    '/_public/careers': {
+      id: '/_public/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof PublicCareersRouteImport
+      parentRoute: typeof PublicRoute
+    }
     '/_public/about': {
       id: '/_public/about'
       path: '/about'
@@ -315,6 +334,7 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 
 interface PublicRouteChildren {
   PublicAboutRoute: typeof PublicAboutRoute
+  PublicCareersRoute: typeof PublicCareersRoute
   PublicContactRoute: typeof PublicContactRoute
   PublicCoursesRoute: typeof PublicCoursesRoute
   PublicInsuranceRoute: typeof PublicInsuranceRoute
@@ -326,6 +346,7 @@ interface PublicRouteChildren {
 
 const PublicRouteChildren: PublicRouteChildren = {
   PublicAboutRoute: PublicAboutRoute,
+  PublicCareersRoute: PublicCareersRoute,
   PublicContactRoute: PublicContactRoute,
   PublicCoursesRoute: PublicCoursesRoute,
   PublicInsuranceRoute: PublicInsuranceRoute,
