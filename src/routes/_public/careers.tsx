@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, SectionHeader } from "@/components/site/Section";
 import { Button } from "@/components/ui/button";
+import { JobApplicationForm } from "@/components/site/JobApplicationForm";
 import { Mail, Phone, CalendarDays, MapPin, Briefcase, Users, TrendingUp, HeartHandshake, Activity, CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/_public/careers")({
@@ -100,7 +101,7 @@ function CareersPage() {
         subtitle="Be part of a dedicated team delivering Trusted Care, closer to you."
       >
         <Button asChild size="lg" className="bg-gold text-gold-foreground hover:bg-gold/90">
-          <a href="mailto:oakwoodhospital@outlook.com?subject=Job%20Application"><Mail className="h-4 w-4 mr-2" /> Apply Today</a>
+          <a href="#apply"><Mail className="h-4 w-4 mr-2" /> Apply Today</a>
         </Button>
       </PageHero>
 
@@ -149,7 +150,14 @@ function CareersPage() {
         </div>
       </section>
 
-      <section className="py-20 container mx-auto px-4">
+      <section id="apply" className="py-20 container mx-auto px-4">
+        <div className="max-w-3xl mx-auto bg-card border border-border rounded-2xl p-8 md:p-12 shadow-soft mb-12">
+          <div className="text-center mb-8">
+            <span className="text-xs tracking-[0.25em] uppercase text-primary/70">Apply online</span>
+            <h2 className="font-display text-3xl md:text-4xl text-primary mt-2">Job Application Form</h2>
+          </div>
+          <JobApplicationForm positions={positions.map(p => p.title)} />
+        </div>
         <div className="max-w-3xl mx-auto bg-cream border border-border rounded-2xl p-8 md:p-12 shadow-soft text-center">
           <span className="text-xs tracking-[0.25em] uppercase text-primary/70">Interested?</span>
           <h2 className="font-display text-3xl md:text-4xl text-primary mt-2">Apply Today</h2>

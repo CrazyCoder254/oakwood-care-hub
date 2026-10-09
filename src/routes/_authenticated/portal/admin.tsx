@@ -29,6 +29,7 @@ function AdminPortal() {
           <TabsTrigger value="roles">Roles</TabsTrigger>
           <TabsTrigger value="appointments">Appointments</TabsTrigger>
           <TabsTrigger value="enrolments">Enrolments</TabsTrigger>
+          <TabsTrigger value="applications">Job applications</TabsTrigger>
         </TabsList>
 
         <TabsContent value="doctors"><DoctorsAdmin /></TabsContent>
@@ -38,6 +39,7 @@ function AdminPortal() {
         <TabsContent value="roles"><RolesAdmin /></TabsContent>
         <TabsContent value="appointments"><AppointmentsAdmin /></TabsContent>
         <TabsContent value="enrolments"><EnrolmentsAdmin /></TabsContent>
+        <TabsContent value="applications"><ApplicationsAdmin /></TabsContent>
       </Tabs>
     </div>
   );
