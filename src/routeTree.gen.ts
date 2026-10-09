@@ -9,33 +9,33 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as PublicRouteImport } from './routes/_public'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as PublicRouteImport } from './routes/_public'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
-import { Route as PublicTeamRouteImport } from './routes/_public/team'
-import { Route as PublicServicesRouteImport } from './routes/_public/services'
-import { Route as PublicMaternityRouteImport } from './routes/_public/maternity'
-import { Route as PublicInsuranceRouteImport } from './routes/_public/insurance'
-import { Route as PublicCoursesRouteImport } from './routes/_public/courses'
-import { Route as PublicContactRouteImport } from './routes/_public/contact'
-import { Route as PublicCareersRouteImport } from './routes/_public/careers'
 import { Route as PublicAboutRouteImport } from './routes/_public/about'
-import { Route as AuthenticatedPortalPatientRouteImport } from './routes/_authenticated/portal/patient'
-import { Route as AuthenticatedPortalDoctorRouteImport } from './routes/_authenticated/portal/doctor'
+import { Route as PublicCareersRouteImport } from './routes/_public/careers'
+import { Route as PublicContactRouteImport } from './routes/_public/contact'
+import { Route as PublicCoursesRouteImport } from './routes/_public/courses'
+import { Route as PublicInsuranceRouteImport } from './routes/_public/insurance'
+import { Route as PublicMaternityRouteImport } from './routes/_public/maternity'
+import { Route as PublicServicesRouteImport } from './routes/_public/services'
+import { Route as PublicTeamRouteImport } from './routes/_public/team'
 import { Route as AuthenticatedPortalAdminRouteImport } from './routes/_authenticated/portal/admin'
+import { Route as AuthenticatedPortalDoctorRouteImport } from './routes/_authenticated/portal/doctor'
+import { Route as AuthenticatedPortalPatientRouteImport } from './routes/_authenticated/portal/patient'
 
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PublicRoute = PublicRouteImport.update({
   id: '/_public',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedRoute = AuthenticatedRouteImport.update({
-  id: '/_authenticated',
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PublicIndexRoute = PublicIndexRouteImport.update({
@@ -43,34 +43,9 @@ const PublicIndexRoute = PublicIndexRouteImport.update({
   path: '/',
   getParentRoute: () => PublicRoute,
 } as any)
-const PublicTeamRoute = PublicTeamRouteImport.update({
-  id: '/team',
-  path: '/team',
-  getParentRoute: () => PublicRoute,
-} as any)
-const PublicServicesRoute = PublicServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => PublicRoute,
-} as any)
-const PublicMaternityRoute = PublicMaternityRouteImport.update({
-  id: '/maternity',
-  path: '/maternity',
-  getParentRoute: () => PublicRoute,
-} as any)
-const PublicInsuranceRoute = PublicInsuranceRouteImport.update({
-  id: '/insurance',
-  path: '/insurance',
-  getParentRoute: () => PublicRoute,
-} as any)
-const PublicCoursesRoute = PublicCoursesRouteImport.update({
-  id: '/courses',
-  path: '/courses',
-  getParentRoute: () => PublicRoute,
-} as any)
-const PublicContactRoute = PublicContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const PublicAboutRoute = PublicAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => PublicRoute,
 } as any)
 const PublicCareersRoute = PublicCareersRouteImport.update({
@@ -78,15 +53,40 @@ const PublicCareersRoute = PublicCareersRouteImport.update({
   path: '/careers',
   getParentRoute: () => PublicRoute,
 } as any)
-const PublicAboutRoute = PublicAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const PublicContactRoute = PublicContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => PublicRoute,
 } as any)
-const AuthenticatedPortalPatientRoute =
-  AuthenticatedPortalPatientRouteImport.update({
-    id: '/portal/patient',
-    path: '/portal/patient',
+const PublicCoursesRoute = PublicCoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicInsuranceRoute = PublicInsuranceRouteImport.update({
+  id: '/insurance',
+  path: '/insurance',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicMaternityRoute = PublicMaternityRouteImport.update({
+  id: '/maternity',
+  path: '/maternity',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicServicesRoute = PublicServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicTeamRoute = PublicTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => PublicRoute,
+} as any)
+const AuthenticatedPortalAdminRoute =
+  AuthenticatedPortalAdminRouteImport.update({
+    id: '/portal/admin',
+    path: '/portal/admin',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedPortalDoctorRoute =
@@ -95,10 +95,10 @@ const AuthenticatedPortalDoctorRoute =
     path: '/portal/doctor',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
-const AuthenticatedPortalAdminRoute =
-  AuthenticatedPortalAdminRouteImport.update({
-    id: '/portal/admin',
-    path: '/portal/admin',
+const AuthenticatedPortalPatientRoute =
+  AuthenticatedPortalPatientRouteImport.update({
+    id: '/portal/patient',
+    path: '/portal/patient',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
 
@@ -208,11 +208,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_public': {
@@ -222,11 +222,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedRouteImport
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_public/': {
@@ -236,46 +236,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicIndexRouteImport
       parentRoute: typeof PublicRoute
     }
-    '/_public/team': {
-      id: '/_public/team'
-      path: '/team'
-      fullPath: '/team'
-      preLoaderRoute: typeof PublicTeamRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/_public/services': {
-      id: '/_public/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof PublicServicesRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/_public/maternity': {
-      id: '/_public/maternity'
-      path: '/maternity'
-      fullPath: '/maternity'
-      preLoaderRoute: typeof PublicMaternityRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/_public/insurance': {
-      id: '/_public/insurance'
-      path: '/insurance'
-      fullPath: '/insurance'
-      preLoaderRoute: typeof PublicInsuranceRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/_public/courses': {
-      id: '/_public/courses'
-      path: '/courses'
-      fullPath: '/courses'
-      preLoaderRoute: typeof PublicCoursesRouteImport
-      parentRoute: typeof PublicRoute
-    }
-    '/_public/contact': {
-      id: '/_public/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof PublicContactRouteImport
+    '/_public/about': {
+      id: '/_public/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof PublicAboutRouteImport
       parentRoute: typeof PublicRoute
     }
     '/_public/careers': {
@@ -285,18 +250,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicCareersRouteImport
       parentRoute: typeof PublicRoute
     }
-    '/_public/about': {
-      id: '/_public/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof PublicAboutRouteImport
+    '/_public/contact': {
+      id: '/_public/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof PublicContactRouteImport
       parentRoute: typeof PublicRoute
     }
-    '/_authenticated/portal/patient': {
-      id: '/_authenticated/portal/patient'
-      path: '/portal/patient'
-      fullPath: '/portal/patient'
-      preLoaderRoute: typeof AuthenticatedPortalPatientRouteImport
+    '/_public/courses': {
+      id: '/_public/courses'
+      path: '/courses'
+      fullPath: '/courses'
+      preLoaderRoute: typeof PublicCoursesRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/insurance': {
+      id: '/_public/insurance'
+      path: '/insurance'
+      fullPath: '/insurance'
+      preLoaderRoute: typeof PublicInsuranceRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/maternity': {
+      id: '/_public/maternity'
+      path: '/maternity'
+      fullPath: '/maternity'
+      preLoaderRoute: typeof PublicMaternityRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/services': {
+      id: '/_public/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof PublicServicesRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/team': {
+      id: '/_public/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof PublicTeamRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_authenticated/portal/admin': {
+      id: '/_authenticated/portal/admin'
+      path: '/portal/admin'
+      fullPath: '/portal/admin'
+      preLoaderRoute: typeof AuthenticatedPortalAdminRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/portal/doctor': {
@@ -306,11 +306,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPortalDoctorRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/portal/admin': {
-      id: '/_authenticated/portal/admin'
-      path: '/portal/admin'
-      fullPath: '/portal/admin'
-      preLoaderRoute: typeof AuthenticatedPortalAdminRouteImport
+    '/_authenticated/portal/patient': {
+      id: '/_authenticated/portal/patient'
+      path: '/portal/patient'
+      fullPath: '/portal/patient'
+      preLoaderRoute: typeof AuthenticatedPortalPatientRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
   }

@@ -29,6 +29,7 @@ function AdminPortal() {
           <TabsTrigger value="roles">Roles</TabsTrigger>
           <TabsTrigger value="appointments">Appointments</TabsTrigger>
           <TabsTrigger value="enrolments">Enrolments</TabsTrigger>
+          <TabsTrigger value="applications">Job applications</TabsTrigger>
         </TabsList>
 
         <TabsContent value="doctors"><DoctorsAdmin /></TabsContent>
@@ -38,6 +39,7 @@ function AdminPortal() {
         <TabsContent value="roles"><RolesAdmin /></TabsContent>
         <TabsContent value="appointments"><AppointmentsAdmin /></TabsContent>
         <TabsContent value="enrolments"><EnrolmentsAdmin /></TabsContent>
+        <TabsContent value="applications"><ApplicationsAdmin /></TabsContent>
       </Tabs>
     </div>
   );
@@ -320,6 +322,43 @@ function EnrolmentsAdmin() {
                 <Select value={e.status} onValueChange={(v) => update(e.id, v)}>
                   <SelectTrigger className="w-[160px]"><SelectValue /></SelectTrigger>
                   <SelectContent>{["pending", "approved", "rejected", "completed"].map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent>
+                </Select>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Panel>
+  );
+}
+
+/* ---------- Job applications ---------- */
+function ApplicationsAdmin() {
+  const { data, refetch } = useQuery({
+    queryKey: ["admin-applications"],
+    queryFn: async () => (await supabase.from("job_applications").select("*").order("created_at", { ascending: false })).data ?? [],
+  });
+  const update = async (id: string, status: string) => { await supabase.from("job_applications").update({ status }).eq("id", id); refetch(); toast.success("Updated"); };
+  return (
+    <Panel title="Job applications">
+      <Table>
+        <TableHeader><TableRow><TableHead>Date</TableHead><TableHead>Position</TableHead><TableHead>Applicant</TableHead><TableHead>Details</TableHead><TableHead>Status</TableHead></TableRow></TableHeader>
+        <TableBody>
+          {data?.map((a) => (
+            <TableRow key={a.id}>
+              <TableCell className="text-xs">{new Date(a.created_at).toLocaleDateString()}</TableCell>
+              <TableCell>{a.position}</TableCell>
+              <TableCell className="text-sm"><div className="font-medium">{a.full_name}</div><div>{a.email}</div><div>{a.phone}</div></TableCell>
+              <TableCell className="text-xs max-w-sm whitespace-pre-wrap">
+                {a.experience_years && <div><b>Experience:</b> {a.experience_years}</div>}
+                {a.qualifications && <div><b>Qualifications:</b> {a.qualifications}</div>}
+                <div><b>Cover letter:</b> {a.cover_letter}</div>
+                {a.cv_link && <a className="text-primary underline" href={a.cv_link} target="_blank" rel="noopener noreferrer">View CV</a>}
+              </TableCell>
+              <TableCell>
+                <Select value={a.status} onValueChange={(v) => update(a.id, v)}>
+                  <SelectTrigger className="w-[150px]"><SelectValue /></SelectTrigger>
+                  <SelectContent>{["new", "shortlisted", "interview", "hired", "rejected"].map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent>
                 </Select>
               </TableCell>
             </TableRow>
