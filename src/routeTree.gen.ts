@@ -19,11 +19,13 @@ import { Route as PublicContactRouteImport } from './routes/_public/contact'
 import { Route as PublicCoursesRouteImport } from './routes/_public/courses'
 import { Route as PublicInsuranceRouteImport } from './routes/_public/insurance'
 import { Route as PublicMaternityRouteImport } from './routes/_public/maternity'
+import { Route as PublicPayRouteImport } from './routes/_public/pay'
 import { Route as PublicServicesRouteImport } from './routes/_public/services'
 import { Route as PublicTeamRouteImport } from './routes/_public/team'
 import { Route as AuthenticatedPortalAdminRouteImport } from './routes/_authenticated/portal/admin'
 import { Route as AuthenticatedPortalDoctorRouteImport } from './routes/_authenticated/portal/doctor'
 import { Route as AuthenticatedPortalPatientRouteImport } from './routes/_authenticated/portal/patient'
+import { Route as ApiPublicMpesaCallbackRouteImport } from './routes/api/public/mpesa/callback'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -73,6 +75,11 @@ const PublicMaternityRoute = PublicMaternityRouteImport.update({
   path: '/maternity',
   getParentRoute: () => PublicRoute,
 } as any)
+const PublicPayRoute = PublicPayRouteImport.update({
+  id: '/pay',
+  path: '/pay',
+  getParentRoute: () => PublicRoute,
+} as any)
 const PublicServicesRoute = PublicServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -101,6 +108,11 @@ const AuthenticatedPortalPatientRoute =
     path: '/portal/patient',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const ApiPublicMpesaCallbackRoute = ApiPublicMpesaCallbackRouteImport.update({
+  id: '/api/public/mpesa/callback',
+  path: '/api/public/mpesa/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof PublicIndexRoute
@@ -111,11 +123,13 @@ export interface FileRoutesByFullPath {
   '/courses': typeof PublicCoursesRoute
   '/insurance': typeof PublicInsuranceRoute
   '/maternity': typeof PublicMaternityRoute
+  '/pay': typeof PublicPayRoute
   '/services': typeof PublicServicesRoute
   '/team': typeof PublicTeamRoute
   '/portal/admin': typeof AuthenticatedPortalAdminRoute
   '/portal/doctor': typeof AuthenticatedPortalDoctorRoute
   '/portal/patient': typeof AuthenticatedPortalPatientRoute
+  '/api/public/mpesa/callback': typeof ApiPublicMpesaCallbackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof PublicIndexRoute
@@ -126,11 +140,13 @@ export interface FileRoutesByTo {
   '/courses': typeof PublicCoursesRoute
   '/insurance': typeof PublicInsuranceRoute
   '/maternity': typeof PublicMaternityRoute
+  '/pay': typeof PublicPayRoute
   '/services': typeof PublicServicesRoute
   '/team': typeof PublicTeamRoute
   '/portal/admin': typeof AuthenticatedPortalAdminRoute
   '/portal/doctor': typeof AuthenticatedPortalDoctorRoute
   '/portal/patient': typeof AuthenticatedPortalPatientRoute
+  '/api/public/mpesa/callback': typeof ApiPublicMpesaCallbackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -143,12 +159,14 @@ export interface FileRoutesById {
   '/_public/courses': typeof PublicCoursesRoute
   '/_public/insurance': typeof PublicInsuranceRoute
   '/_public/maternity': typeof PublicMaternityRoute
+  '/_public/pay': typeof PublicPayRoute
   '/_public/services': typeof PublicServicesRoute
   '/_public/team': typeof PublicTeamRoute
   '/_public/': typeof PublicIndexRoute
   '/_authenticated/portal/admin': typeof AuthenticatedPortalAdminRoute
   '/_authenticated/portal/doctor': typeof AuthenticatedPortalDoctorRoute
   '/_authenticated/portal/patient': typeof AuthenticatedPortalPatientRoute
+  '/api/public/mpesa/callback': typeof ApiPublicMpesaCallbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,11 +179,13 @@ export interface FileRouteTypes {
     | '/courses'
     | '/insurance'
     | '/maternity'
+    | '/pay'
     | '/services'
     | '/team'
     | '/portal/admin'
     | '/portal/doctor'
     | '/portal/patient'
+    | '/api/public/mpesa/callback'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -176,11 +196,13 @@ export interface FileRouteTypes {
     | '/courses'
     | '/insurance'
     | '/maternity'
+    | '/pay'
     | '/services'
     | '/team'
     | '/portal/admin'
     | '/portal/doctor'
     | '/portal/patient'
+    | '/api/public/mpesa/callback'
   id:
     | '__root__'
     | '/_authenticated'
@@ -192,18 +214,21 @@ export interface FileRouteTypes {
     | '/_public/courses'
     | '/_public/insurance'
     | '/_public/maternity'
+    | '/_public/pay'
     | '/_public/services'
     | '/_public/team'
     | '/_public/'
     | '/_authenticated/portal/admin'
     | '/_authenticated/portal/doctor'
     | '/_authenticated/portal/patient'
+    | '/api/public/mpesa/callback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   PublicRoute: typeof PublicRouteWithChildren
   AuthRoute: typeof AuthRoute
+  ApiPublicMpesaCallbackRoute: typeof ApiPublicMpesaCallbackRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -278,6 +303,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicMaternityRouteImport
       parentRoute: typeof PublicRoute
     }
+    '/_public/pay': {
+      id: '/_public/pay'
+      path: '/pay'
+      fullPath: '/pay'
+      preLoaderRoute: typeof PublicPayRouteImport
+      parentRoute: typeof PublicRoute
+    }
     '/_public/services': {
       id: '/_public/services'
       path: '/services'
@@ -313,6 +345,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPortalPatientRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/api/public/mpesa/callback': {
+      id: '/api/public/mpesa/callback'
+      path: '/api/public/mpesa/callback'
+      fullPath: '/api/public/mpesa/callback'
+      preLoaderRoute: typeof ApiPublicMpesaCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -339,6 +378,7 @@ interface PublicRouteChildren {
   PublicCoursesRoute: typeof PublicCoursesRoute
   PublicInsuranceRoute: typeof PublicInsuranceRoute
   PublicMaternityRoute: typeof PublicMaternityRoute
+  PublicPayRoute: typeof PublicPayRoute
   PublicServicesRoute: typeof PublicServicesRoute
   PublicTeamRoute: typeof PublicTeamRoute
   PublicIndexRoute: typeof PublicIndexRoute
@@ -351,6 +391,7 @@ const PublicRouteChildren: PublicRouteChildren = {
   PublicCoursesRoute: PublicCoursesRoute,
   PublicInsuranceRoute: PublicInsuranceRoute,
   PublicMaternityRoute: PublicMaternityRoute,
+  PublicPayRoute: PublicPayRoute,
   PublicServicesRoute: PublicServicesRoute,
   PublicTeamRoute: PublicTeamRoute,
   PublicIndexRoute: PublicIndexRoute,
@@ -363,6 +404,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   PublicRoute: PublicRouteWithChildren,
   AuthRoute: AuthRoute,
+  ApiPublicMpesaCallbackRoute: ApiPublicMpesaCallbackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
